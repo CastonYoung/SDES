@@ -10,6 +10,13 @@ using namespace std;
 
 int* getText()
 {
+
+	char c1, c2, c3;
+	cin >> c1 >> c2 >> c3;
+	bool i = c1 - '0';
+	//put into int array from there.
+
+	/*
 	auto const size = 10;
 	auto* const inputText = new int[size];
 	string rawInput;
