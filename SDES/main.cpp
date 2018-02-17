@@ -10,12 +10,12 @@ using namespace std;
 
 enum TextType { plain, cipher, key };
 
-int* getInput(int textType)
+bool* getInput(int textType)
 {
 	auto size = 8;
 	if (textType == key) size = 10;
 
-	auto* const inputText = new int[size];
+	auto* const inputText = new bool[size];
 
 	for(int i{}; i < size; i++)
 	{
@@ -27,6 +27,8 @@ int* getInput(int textType)
 	
 	return inputText;
 }
+
+//function for permutation (switch statment possibly for different permutation steps?)
 
 int main()
 {
@@ -52,20 +54,32 @@ int main()
 		case 1:
 			{
 			cout << " Enter your 8-bit plaintext: ";
-			auto plainText = getInput(plain);
+			auto* plainText = getInput(plain);
 
 			cout << " Enter your 10-bit key: ";
-			auto keyText = getInput(key);
+			auto* keyText = getInput(key);
 
+			//Do the sdes algorithm stuff
+			//output ciphertext, key1 and key2
+
+			delete[] plainText;
+			delete[] keyText;
 			break;
 			}
 
 		case 2:
 			{
 			cout << " Enter your 8-bit ciphertext: ";
-
 			auto cipherText = getInput(cipher);
 
+			cout << " Enter your 10-bit key: ";
+			auto* keyText = getInput(key);
+
+			//Do the sdes algorithm stuff
+			//output ciphertext, key1 and key2
+
+			delete[] cipherText;
+			delete[] keyText;
 			break;
 			}
 
@@ -84,6 +98,7 @@ int main()
 		break;
 		}
 	}
+
     return 0;
 }
 
