@@ -3,32 +3,11 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include <string>
-#include <sstream>
+#include "functions.h"
 
 using namespace std;
 
 enum TextType { plain, cipher, key };
-
-bool* getInput(int textType)
-{
-	auto size = 8;
-	if (textType == key) size = 10;
-
-	auto* const inputText = new bool[size];
-
-	for(int i{}; i < size; i++)
-	{
-		char rawInput;
-		cin >> rawInput;
-		auto const currentBit = rawInput - '0';
-		inputText[i] = currentBit;
-	}
-	
-	return inputText;
-}
-
-//function for permutation (switch statment possibly for different permutation steps?)
 
 int main()
 {
@@ -55,6 +34,8 @@ int main()
 			{
 			cout << " Enter your 8-bit plaintext: ";
 			auto* plainText = getInput(plain);
+
+			plainText = IPFunction(plainText);
 
 			cout << " Enter your 10-bit key: ";
 			auto* keyText = getInput(key);
