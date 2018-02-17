@@ -1,4 +1,4 @@
-﻿// SDES.cpp : Defines the entry point for the console application.
+﻿// main.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -17,9 +17,9 @@ int* getInput(int textType)
 
 	auto* const inputText = new int[size];
 
-	char rawInput;
 	for(int i{}; i < size; i++)
 	{
+		char rawInput;
 		cin >> rawInput;
 		auto const currentBit = rawInput - '0';
 		inputText[i] = currentBit;
@@ -45,21 +45,26 @@ int main()
 
 		cin >> choice;
 
+		cout << endl;
 
 		switch (choice)
 		{
 		case 1:
 			{
-			cout << endl << " Please enter your 8-bit plaintext.\n";
-
+			cout << " Enter your 8-bit plaintext: ";
 			auto plainText = getInput(plain);
+
+			cout << " Enter your 10-bit key: ";
+			auto keyText = getInput(key);
 
 			break;
 			}
 
 		case 2:
 			{
-			cout << " Please enter your 8-bit ciphertext.\n";
+			cout << " Enter your 8-bit ciphertext: ";
+
+			auto cipherText = getInput(cipher);
 
 			break;
 			}
