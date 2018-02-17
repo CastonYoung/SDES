@@ -8,53 +8,24 @@
 
 using namespace std;
 
-int* getText()
+enum TextType { plain, cipher, key };
+
+int* getInput(int textType)
 {
+	auto size = 8;
+	if (textType == key) size = 10;
 
-	char c1, c2, c3;
-	cin >> c1 >> c2 >> c3;
-	bool i = c1 - '0';
-	//put into int array from there.
-
-	/*
-	auto const size = 10;
 	auto* const inputText = new int[size];
-	string rawInput;
 
-	cout << " Please enter your 8-bit plaintext.\n";
-	cin.ignore();
-	getline(cin, rawInput);
-
-	stringstream parser(rawInput);
-
-	//Not reading in as individual ints...
-	for (int i = 0; i < size; i++) parser >> inputText[i];
-	/*
-	int i{};
-	while (parser >> inputText[i])
+	char rawInput;
+	for(int i{}; i < size; i++)
 	{
-		i++;
+		cin >> rawInput;
+		auto const currentBit = rawInput - '0';
+		inputText[i] = currentBit;
 	}
-	*/
 	
 	return inputText;
-}
-
-int* getKey()
-{
-	auto* const keyText = new int[10];
-	string rawKeyInput;
-
-	cout << " Please enter your 10-bit key.\n";
-	cin.ignore();
-	getline(cin, rawKeyInput);
-
-	stringstream parser(rawKeyInput);
-	auto const size = sizeof(rawKeyInput);
-
-	//for (int i{}; i < size; i++) parser >> keyText[i];
-
-	return keyText;
 }
 
 int main()
@@ -79,7 +50,9 @@ int main()
 		{
 		case 1:
 			{
-			auto plainText = getText();
+			cout << endl << " Please enter your 8-bit plaintext.\n";
+
+			auto plainText = getInput(plain);
 
 			break;
 			}
@@ -87,8 +60,6 @@ int main()
 		case 2:
 			{
 			cout << " Please enter your 8-bit ciphertext.\n";
-
-			auto cipherText = getText();
 
 			break;
 			}
