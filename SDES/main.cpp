@@ -7,8 +7,6 @@
 
 using namespace std;
 
-enum TextType { plain, cipher, key };
-
 int main()
 {
 	// Code assistance from http://www.cplusplus.com/forum/beginner/21033/

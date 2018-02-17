@@ -1,10 +1,9 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include "functions.h"
 
 using namespace std;
-
-enum TextType { plain, cipher, key };
 
 bool* getInput(int textType)
 {
@@ -24,8 +23,6 @@ bool* getInput(int textType)
 	return inputText;
 }
 
-const int S0[][4] = { {1, 0, 3, 2}, {3, 2, 1, 0}, {0, 2, 0, 3}, {3, 1, 3, 2} };
-const int S1[][4] = { {0, 1, 2, 3}, {2, 0, 1, 3}, {3, 0, 1, 0}, {2, 1, 1, 3} };
 
 bool* IPFunction(bool* text)
 {
@@ -61,18 +58,18 @@ bool* InverseIPFunction(bool* text)
 	return text;
 }
 
-bool* FunctionFk(bool* text, bool* subkeyOne)
+bool* FunctionFk(bool* text, bool* subkey1)
 {
 	// E/P Expansion permutation
 	auto const tempText = new bool[8];
-	tempText[0] = text[3] ^ subkeyOne[0];
-	tempText[1] = text[0] ^ subkeyOne[1];
-	tempText[2] = text[1] ^ subkeyOne[2];
-	tempText[3] = text[2] ^ subkeyOne[3];
-	tempText[4] = text[1] ^ subkeyOne[4];
-	tempText[5] = text[2] ^ subkeyOne[5];
-	tempText[6] = text[4] ^ subkeyOne[6];
-	tempText[7] = text[1] ^ subkeyOne[7];
+	tempText[0] = text[3] ^ subkey1[0];
+	tempText[1] = text[0] ^ subkey1[1];
+	tempText[2] = text[1] ^ subkey1[2];
+	tempText[3] = text[2] ^ subkey1[3];
+	tempText[4] = text[1] ^ subkey1[4];
+	tempText[5] = text[2] ^ subkey1[5];
+	tempText[6] = text[4] ^ subkey1[6];
+	tempText[7] = text[1] ^ subkey1[7];
 
 	//need to input this into S0 and S1
 
