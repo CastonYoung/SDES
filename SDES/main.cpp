@@ -65,16 +65,13 @@ int main()
 		case 3: 
 			cout << "End of Program.\n";
 			programRun = false;
-
-		break;
+			break;
 
 		default: 
-
-		cout << "Not a Valid Choice. \n";
-		cout << "Choose again.\n";
-		cin >> choice;
-
-		break;
+			cout << "Not a Valid Choice. \n";
+			cout << "Choose again.\n";
+			cin >> choice;
+			break;
 		}
 	}
 
