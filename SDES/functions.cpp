@@ -15,7 +15,7 @@ bool* getInput(int textType)
 	for(int i{}; i < size; i++)
 	{
 		char rawInput;
-		std::cin >> rawInput;
+		cin >> rawInput;
 		auto const currentBit = rawInput - '0';
 		inputText[i] = currentBit;
 	}

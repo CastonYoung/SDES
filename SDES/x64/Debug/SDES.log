@@ -1,2 +1,6 @@
-﻿  functions.cpp
-  SDES.vcxproj -> D:\Documents\GitHub\SDES\x64\Debug\SDES.exe
+﻿  stdafx.cpp
+  main.cpp
+  functions.cpp
+  Generating Code...
+  LINK : C:\Users\Drew Deraita\Documents\GitHub\SDES\x64\Debug\SDES.exe not found or not built by the last incremental link; performing full link
+  SDES.vcxproj -> C:\Users\Drew Deraita\Documents\GitHub\SDES\x64\Debug\SDES.exe
