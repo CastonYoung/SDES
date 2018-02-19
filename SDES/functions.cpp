@@ -78,6 +78,23 @@ bool* FunctionFk(bool* text, bool* subkey1)
 	return text;
 }
 
+bool* Switch(bool* text)//Switches the first and second halves of 8 bit data.
+{
+	auto const tempText = new bool[8];
+	tempText[0] = text[4];
+	tempText[1] = text[5];
+	tempText[2] = text[6];
+	tempText[3] = text[7];
+	tempText[4] = text[0];
+	tempText[5] = text[1];
+	tempText[6] = text[2];
+	tempText[7] = text[3];
+
+	delete[] text;
+	text = tempText;
+	return text;
+}
+
 bool* GenKey1(bool* text)//[10]
 {
 	/*auto const keypart1 = new bool[5];

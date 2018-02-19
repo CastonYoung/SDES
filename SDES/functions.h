@@ -11,6 +11,10 @@ bool* IPFunction(bool* text);
 
 bool* InverseIPFunction(bool* text);
 
+bool* FunctionFk(bool* text, bool* subkey1);
+
+bool* Switch(bool* text);
+
 bool* GenKey1(bool* text);
 
 bool* GenKey2(bool* text);

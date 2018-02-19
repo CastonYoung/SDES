@@ -14,6 +14,12 @@ int main()
 	auto programRun = true;
 	while (programRun)
 	{
+		bool *input =nullptr,
+			 *output=nullptr,
+			 *key0 = nullptr,
+			 *key1 = nullptr,
+			 *key2 = nullptr;
+
 		cout << "***********SDES Multitool************\n";
 		cout << endl;
 		cout << " 1 - Encrypt\n";
@@ -31,34 +37,30 @@ int main()
 		case 1:
 			{
 			cout << " Enter your 8-bit plaintext: ";
-			auto* plainText = getInput(plain);
-
-			plainText = IPFunction(plainText);
+			input = getInput(plain);
 
 			cout << " Enter your 10-bit key: ";
-			auto* keyText = getInput(key);
+			key0 = getInput(key);
+			key1 = GenKey1(key0);
+			key2 = GenKey2(key0);
 
-			//Do the sdes algorithm stuff
-			//output ciphertext, key1 and key2
+			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(IPFunction(input),key1) ), key2 ));
 
-			delete[] plainText;
-			delete[] keyText;
 			break;
 			}
 
 		case 2:
 			{
 			cout << " Enter your 8-bit ciphertext: ";
-			auto cipherText = getInput(cipher);
+			input = getInput(cipher);
 
 			cout << " Enter your 10-bit key: ";
-			auto* keyText = getInput(key);
+			key0 = getInput(key);
+			key1 = GenKey1(key0);
+			key2 = GenKey2(key0);
 
-			//Do the sdes algorithm stuff
-			//output ciphertext, key1 and key2
+			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(IPFunction(input),key2) ), key1 ));
 
-			delete[] cipherText;
-			delete[] keyText;
 			break;
 			}
 
@@ -73,6 +75,14 @@ int main()
 			cin >> choice;
 			break;
 		}
+
+		cout <<endl<<endl<< *output <<endl<<endl;
+
+		if (nullptr != input) delete[] input;
+		if (nullptr != output) delete[] output;
+		if (nullptr != key0) delete[] key0;
+		if (nullptr != key1) delete[] key1;
+		if (nullptr != key2) delete[] key2;
 	}
 
     return 0;
