@@ -14,11 +14,12 @@ int main()
 	auto programRun = true;
 	while (programRun)
 	{
-		bool *input =nullptr,
-			 *output=nullptr,
-			 *key0 = nullptr,
-			 *key1 = nullptr,
-			 *key2 = nullptr;
+		bool *input;
+		bool *output = {};
+		bool *key0;
+		bool *key1;
+		bool *key2;
+	
 
 		cout << "***********SDES Multitool************\n";
 		cout << endl;
@@ -76,15 +77,19 @@ int main()
 			break;
 		}
 
-		cout <<endl<<endl<< *output <<endl<<endl;
+		for (int i = 0; i < 8; i++)
+		{
+			if (output[i])
+				cout << '1';
+			else
+				cout << '0';
+		}
+		cout << endl;
 
-		if (nullptr != input) delete[] input;
-		if (nullptr != output) delete[] output;
-		if (nullptr != key0) delete[] key0;
-		if (nullptr != key1) delete[] key1;
-		if (nullptr != key2) delete[] key2;
 	}
 
+	getchar();
+	getchar();
     return 0;
 }
 
