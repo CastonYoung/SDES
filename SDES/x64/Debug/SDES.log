@@ -1,6 +1,7 @@
-﻿  functions.cpp
-c:\users\curtis\desktop\cst407\assign 2\sdes\sdes\functions.cpp(94): warning C4101: 'p4Binary': unreferenced local variable
-c:\users\curtis\desktop\cst407\assign 2\sdes\sdes\functions.cpp(86): warning C4172: returning address of local variable or temporary: tempTextIP
-c:\users\curtis\desktop\cst407\assign 2\sdes\sdes\functions.cpp(144): warning C4172: returning address of local variable or temporary: tempTextSW
-c:\users\curtis\desktop\cst407\assign 2\sdes\sdes\functions.cpp(127): warning C4172: returning address of local variable or temporary: tR
-  SDES.vcxproj -> C:\Users\Curtis\Desktop\CST407\Assign 2\SDES\x64\Debug\SDES.exe
+﻿  stdafx.cpp
+  main.cpp
+  functions.cpp
+  Generating Code...
+c:\users\drew deraita\documents\github\sdes\sdes\functions.cpp(134): warning C4172: returning address of local variable or temporary: tempTextSW
+c:\users\drew deraita\documents\github\sdes\sdes\functions.cpp(119): warning C4172: returning address of local variable or temporary: tR
+  SDES.vcxproj -> C:\Users\Drew Deraita\Documents\GitHub\SDES\x64\Debug\SDES.exe

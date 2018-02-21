@@ -37,7 +37,7 @@ int main()
 
 		switch (choice)
 		{
-		case 1:
+		case encrypt:
 			{
 			cout << " Enter your 8-bit plaintext: ";
 			input = getInput(plain);
@@ -55,12 +55,12 @@ int main()
 			
 			IPFunction(input2);
 
-			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key1) ), key2 ));
+			InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key1) ), key2 ));
 
 			break;
 			}
 
-		case 2:
+		case decrypt:
 			{
 			cout << " Enter your 8-bit ciphertext: ";
 			input = getInput(cipher);
@@ -72,7 +72,7 @@ int main()
 
 			IPFunction(input2);
 
-			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key2) ), key1 ));
+			InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key2) ), key1 ));
 
 			break;
 			}
@@ -89,6 +89,7 @@ int main()
 			break;
 		}
 
+		//Output the resulting text
 		for (int i = 0; i < 8; i++)
 		{
 			if (output[i])

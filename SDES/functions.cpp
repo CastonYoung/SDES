@@ -62,28 +62,23 @@ void IPFunction(bool textIP[])
 	tempIP[6] = textIP[4];
 	tempIP[7] = textIP[6];
 
-	for (int i = 0; i < 8; i++)
-	{
-		textIP[i] = tempIP[i];
-
-	}
-	
+	for (int i = 0; i < 8; i++) textIP[i] = tempIP[i];
 	
 }
 
-bool* InverseIPFunction(bool textIIP[])
+void InverseIPFunction(bool textIIP[])
 {
-	bool tempTextIP[8];
-	tempTextIP[0] = textIIP[3];
-	tempTextIP[1] = textIIP[0];
-	tempTextIP[2] = textIIP[2];
-	tempTextIP[3] = textIIP[4];
-	tempTextIP[4] = textIIP[6];
-	tempTextIP[5] = textIIP[1];
-	tempTextIP[6] = textIIP[7];
-	tempTextIP[7] = textIIP[5];
+	bool tempIIP[8];
+	tempIIP[0] = textIIP[3];
+	tempIIP[1] = textIIP[0];
+	tempIIP[2] = textIIP[2];
+	tempIIP[3] = textIIP[4];
+	tempIIP[4] = textIIP[6];
+	tempIIP[5] = textIIP[1];
+	tempIIP[6] = textIIP[7];
+	tempIIP[7] = textIIP[5];
 
-	return tempTextIP;
+	for (int i = 0; i < 8; i++) textIIP[i] = tempIIP[i];
 }
 
 bool* FunctionFk(bool textFFK[], bool subkey1[])
@@ -91,7 +86,6 @@ bool* FunctionFk(bool textFFK[], bool subkey1[])
 	// E/P Expansion permutation
 	bool eP[8]; //vlaues for the text being permutated
 	int p4Decimal[2]; //decimal values returned from the tables
-	bool p4Binary[4]; //binary values from the decimal values
 	bool tR[4]; //table result container (from positions in s0 and s1)
 
 	eP[0] = textFFK[3] ^ subkey1[0];
@@ -122,8 +116,6 @@ bool* FunctionFk(bool textFFK[], bool subkey1[])
 	tR[2] = p4Holder2[0];
 	tR[3] = p4Holder1[1];
 
-
-
 	return tR;
 }
 
@@ -138,8 +130,6 @@ bool* Switch(bool textSW[])//Switches the first and second halves of 8 bit data.
 	tempTextSW[5] = textSW[1];
 	tempTextSW[6] = textSW[2];
 	tempTextSW[7] = textSW[3];
-
-	
 
 	return tempTextSW;
 }

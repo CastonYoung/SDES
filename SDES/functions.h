@@ -1,12 +1,13 @@
 #pragma once
 
 enum TextType { plain, cipher, key };
+enum menuSel { encrypt = 1, decrypt, exitProgram };
 
 bool* getInput(int textType);
 
 void IPFunction(bool* textIP);
 
-bool* InverseIPFunction(bool* textIIP);
+void InverseIPFunction(bool textIIP[]);
 
 bool* FunctionFk(bool* textFFK, bool* subkey1);
 
