@@ -6,14 +6,14 @@
 using namespace std;
 
 int S0[4][4] = { { 1,0,3,2 },
-{ 3,2,1,0 },
-{ 0,2,1,3 },
-{ 3,1,3,2 } };
+				 { 3,2,1,0 },
+				 { 0,2,1,3 },
+				 { 3,1,3,2 } };
 
 int S1[4][4] = { { 0,1,2,3 },
-{ 2,0,1,3 },
-{ 3,0,1,0 },
-{ 2,1,0,3 } };
+				 { 2,0,1,3 },
+				 { 3,0,1,0 },
+				 { 2,1,0,3 } };
 
 bool* getInput(int textType)
 {
@@ -88,15 +88,15 @@ void FunctionFk(bool textFFK[], bool output[], bool subkey1[])
 	int p4Decimal[2]; //decimal values returned from the tables
 	bool tR[4]; //table result container (from positions in s0 and s1)
 
-	eP[0] = textFFK[3] ^ subkey1[0];
-	eP[1] = textFFK[0] ^ subkey1[1];
-	eP[2] = textFFK[1] ^ subkey1[2];
-	eP[3] = textFFK[2] ^ subkey1[3];
+	eP[0] = textFFK[7] ^ subkey1[0];
+	eP[1] = textFFK[4] ^ subkey1[1];
+	eP[2] = textFFK[5] ^ subkey1[2];
+	eP[3] = textFFK[6] ^ subkey1[3];
 
-	eP[4] = textFFK[1] ^ subkey1[4];
-	eP[5] = textFFK[2] ^ subkey1[5];
-	eP[6] = textFFK[3] ^ subkey1[6];
-	eP[7] = textFFK[0] ^ subkey1[7];
+	eP[4] = textFFK[5] ^ subkey1[4];
+	eP[5] = textFFK[6] ^ subkey1[5];
+	eP[6] = textFFK[7] ^ subkey1[6];
+	eP[7] = textFFK[4] ^ subkey1[7];
 
 
 	//get values from table
@@ -118,6 +118,12 @@ void FunctionFk(bool textFFK[], bool output[], bool subkey1[])
 
 	for (int i = 0; i < 4; i++) output[i] = tR[i];
 }
+
+/*
+ * 1 1 0 1
+ * 1 3 2 0
+ * 1 1 0 1
+ */
 
 void SwitchFn(bool textSW[])//Switches the first and second halves of 8 bit data.
 {
@@ -146,60 +152,6 @@ void GenKey1(bool key0[], bool* key1)
 	key1[7] = key0[5];
 }
 
-/*
-void GenKey1(bool textG1[], bool* keyG1)
-{
-	
-	bool tempG1[8];
-
-	tempG1[0] = textG1[5];
-	tempG1[1] = textG1[4];
-	tempG1[2] = textG1[9];
-	tempG1[3] = textG1[1];
-	tempG1[4] = textG1[0];
-	tempG1[5] = textG1[6];
-	tempG1[6] = textG1[7];
-	tempG1[7] = textG1[8];
-
-	keyG1[0] = tempG1[0];
-	keyG1[1] = tempG1[1];
-	keyG1[2] = tempG1[2];
-	keyG1[3] = tempG1[3];
-	keyG1[4] = tempG1[4];
-	keyG1[5] = tempG1[5];
-	keyG1[6] = tempG1[6];
-	keyG1[7] = tempG1[7];
-	
-
-}
-*/
-
-/*
-void GenKey2(bool textG2[], bool* keyG2)
-{
-	bool tempG2[8];
-
-	tempG2[0] = textG2[7];
-	tempG2[1] = textG2[2];
-	tempG2[2] = textG2[5];
-	tempG2[3] = textG2[4];
-	tempG2[4] = textG2[9];
-	tempG2[5] = textG2[1];
-	tempG2[6] = textG2[8];
-	tempG2[7] = textG2[0];
-
-	keyG2[0] = tempG2[0];
-	keyG2[1] = tempG2[1];
-	keyG2[2] = tempG2[2];
-	keyG2[3] = tempG2[3];
-	keyG2[4] = tempG2[4];
-	keyG2[5] = tempG2[5];
-	keyG2[6] = tempG2[6];
-	keyG2[7] = tempG2[7];
-
-
-}
-*/
 
 void GenKey2(bool key0[], bool* key2)
 {

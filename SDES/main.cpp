@@ -55,7 +55,9 @@ int main()
 			FunctionFk(input2, output, key1);
 			SwitchFn (output);
 
-			FunctionFk(input2, output, key2);
+			for (int i = 0; i < 4; i++) output[i] = input2[i + 4];
+
+			FunctionFk(output, output, key2);
 			InverseIPFunction(output);
 
 			break;
