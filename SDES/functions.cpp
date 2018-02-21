@@ -5,21 +5,23 @@
 
 using namespace std;
 
-int S0[4][4] = { { 1,0,3,2 },
-				 { 3,2,1,0 },
-				 { 0,2,1,3 },
-				 { 3,1,3,2 } };
+const int S0[4][4] = {
+	{ 1,0,3,2 },
+	{ 3,2,1,0 },
+	{ 0,2,1,3 },
+	{ 3,1,3,2 }
+};
 
-int S1[4][4] = { { 0,1,2,3 },
-				 { 2,0,1,3 },
-				 { 3,0,1,0 },
-				 { 2,1,0,3 } };
+const int S1[4][4] = { 
+	{ 0,1,2,3 },
+	{ 2,0,1,3 },
+	{ 3,0,1,0 },
+	{ 2,1,0,3 }
+};
 
 bool* getInput(int textType)
 {
-
 	bool* inputText = new bool[8];
-
 
 	for (int i{}; i < 8; i++)
 	{
@@ -31,11 +33,10 @@ bool* getInput(int textType)
 
 	return inputText;
 }
+
 bool* getKey(int textType)
 {
-
 	bool* inputText = new bool[10];
-
 
 	for (int i{}; i < 10; i++)
 	{
@@ -47,7 +48,6 @@ bool* getKey(int textType)
 
 	return inputText;
 }
-
 
 void IPFunction(bool textIP[])
 {
@@ -81,7 +81,7 @@ void InverseIPFunction(bool textIIP[])
 	for (int i = 0; i < 8; i++) textIIP[i] = tempIIP[i];
 }
 
-void FunctionFk(bool textFFK[], bool output[], bool subkey1[])
+void FunctionFk(const bool textFFK[], bool output[], const bool subkey1[])
 {
 	// E/P Expansion permutation
 	bool eP[8]; //vlaues for the text being permutated
@@ -103,8 +103,8 @@ void FunctionFk(bool textFFK[], bool output[], bool subkey1[])
 	p4Decimal[0] = S0[binaryConversion(eP[0], eP[3])][binaryConversion(eP[1], eP[2])];
 	p4Decimal[1] = S1[binaryConversion(eP[4], eP[7])][binaryConversion(eP[5], eP[6])];
 
-	int first = p4Decimal[0];
-	int second = p4Decimal[1];
+	const auto first = p4Decimal[0];
+	const auto second = p4Decimal[1];
 
 	bool p4Holder1[2] = { 0,0 };
 	decimalConversion(first, p4Holder1);
@@ -118,12 +118,6 @@ void FunctionFk(bool textFFK[], bool output[], bool subkey1[])
 
 	for (int i = 0; i < 4; i++) output[i] = tR[i];
 }
-
-/*
- * 1 1 0 1
- * 1 3 2 0
- * 1 1 0 1
- */
 
 void SwitchFn(bool textSW[])//Switches the first and second halves of 8 bit data.
 {
@@ -140,7 +134,7 @@ void SwitchFn(bool textSW[])//Switches the first and second halves of 8 bit data
 	for (int i = 0; i < 8; i++) textSW[i] = tempTextSW[i];
 }
 
-void GenKey1(bool key0[], bool* key1)
+void GenKey1(const bool key0[], bool* key1)
 {
 	key1[0] = key0[0];
 	key1[1] = key0[6];
@@ -152,8 +146,7 @@ void GenKey1(bool key0[], bool* key1)
 	key1[7] = key0[5];
 }
 
-
-void GenKey2(bool key0[], bool* key2)
+void GenKey2(const bool key0[], bool* key2)
 {
 	key2[0] = key0[7];
 	key2[1] = key0[2];
@@ -164,7 +157,6 @@ void GenKey2(bool key0[], bool* key2)
 	key2[6] = key0[8];
 	key2[7] = key0[0];
 }
-
 
 int binaryConversion(bool one, bool two)
 {

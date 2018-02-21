@@ -11,17 +11,17 @@ int main()
 {
 
 	int choice;
-	bool input2[8] = { 0,0,0,0,0,0,0,0 };
-	bool *input = {};
-	bool output[8] = {0,0,0,0,0,0,0,0};
-	bool* key0 = {};
-	bool key1[8] = {0,0,0,0,0,0,0,0};
-	bool key2[8] = { 0,0,0,0,0,0,0,0 };
 	bool programRun = true;
+
 	while (programRun)
 	{
 		
-	
+		bool input2[8]{};
+		bool *input{};
+		bool output[8]{};
+		bool* key0{};
+		bool key1[8]{};
+		bool key2[8]{};
 
 		cout << "***********SDES Multitool************\n";
 		cout << endl;
@@ -41,12 +41,14 @@ int main()
 			{
 			cout << " Enter your 8-bit plaintext: ";
 			input = getInput(plain);
+			cout << endl;
 
 			for (int i = 0; i < 8; i++) input2[i] = input[i];
-				
 
 			cout << " Enter your 10-bit key: ";
 			key0 = getKey(key);
+			cout << endl;
+
 			GenKey1(key0, key1);
 			GenKey2(key0, key2);
 			
@@ -60,6 +62,8 @@ int main()
 			FunctionFk(output, output, key2);
 			InverseIPFunction(output);
 
+			cout << " The 8-bit cypertext is: ";
+
 			break;
 			}
 
@@ -67,45 +71,79 @@ int main()
 			{
 			cout << " Enter your 8-bit ciphertext: ";
 			input = getInput(cipher);
+			cout << endl;
+
+			for (int i = 0; i < 8; i++) input2[i] = input[i];
 
 			cout << " Enter your 10-bit key: ";
-			key0 = getInput(key);
+			key0 = getKey(key);
+			cout << endl;
+
 			GenKey1(key0, key1);
 			GenKey2(key0, key2);
 
 			IPFunction(input2);
 
-			//InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key2) ), key1 ));
+			FunctionFk(input2, output, key2);
+			SwitchFn (output);
+
+			for (int i = 0; i < 4; i++) output[i] = input2[i + 4];
+
+			FunctionFk(output, output, key1);
+			InverseIPFunction(output);
+
+			cout << " The 8-bit plaintext is: ";
 
 			break;
 			}
 
 		case 3: 
-			cout << "End of Program.\n";
+			cout << " End of Program.\n";
 			programRun = false;
+			return 0;
+
 			break;
 
 		default: 
-			cout << "Not a Valid Choice. \n";
-			cout << "Choose again.\n";
+			cout << " Not a Valid Choice. Choose again. \n";
 			cin >> choice;
+			cout << endl;
+
 			break;
 		}
 
 		//Output the resulting text
 		for (int i = 0; i < 8; i++)
 		{
-			if (output[i])
-				cout << '1';
-			else
-				cout << '0';
+			if (output[i]) cout << '1';
+			else cout << '0';
 		}
-		cout << endl;
 
+		cout << endl << endl;
+		cout << " SubKey 1 is: ";
+
+		//Output Key1
+		for (int i = 0; i < 8; i++)
+		{
+			if (key1[i]) cout << '1';
+			else cout << '0';
+		}
+
+		cout << endl << endl;
+		cout << " SubKey 2 is: ";
+
+		//Output Key2
+		for (int i = 0; i < 8; i++)
+		{
+			if (key2[i]) cout << '1';
+			else cout << '0';
+		}
+
+		cout << endl << endl;
+		system("PAUSE");
+		system("CLS");
 	}
 
-	getchar();
-	getchar();
     return 0;
 }
 
