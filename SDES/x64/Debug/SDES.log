@@ -1,7 +1,2 @@
-﻿  stdafx.cpp
-  main.cpp
-  functions.cpp
-  Generating Code...
-c:\users\drew deraita\documents\github\sdes\sdes\functions.cpp(134): warning C4172: returning address of local variable or temporary: tempTextSW
-c:\users\drew deraita\documents\github\sdes\sdes\functions.cpp(119): warning C4172: returning address of local variable or temporary: tR
+﻿  functions.cpp
   SDES.vcxproj -> C:\Users\Drew Deraita\Documents\GitHub\SDES\x64\Debug\SDES.exe

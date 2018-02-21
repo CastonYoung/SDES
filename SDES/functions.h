@@ -9,9 +9,9 @@ void IPFunction(bool* textIP);
 
 void InverseIPFunction(bool textIIP[]);
 
-bool* FunctionFk(bool* textFFK, bool* subkey1);
+void FunctionFk(bool textFFK[], bool output[], bool subkey1[]);
 
-bool* Switch(bool* textSW);
+void SwitchFn(bool textSW[]);
 
 void GenKey1(bool textG2[], bool* keyG1);
 

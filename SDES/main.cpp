@@ -13,7 +13,7 @@ int main()
 	int choice;
 	bool input2[8] = { 0,0,0,0,0,0,0,0 };
 	bool *input = {};
-	bool *output = {};
+	bool output[8] = {0,0,0,0,0,0,0,0};
 	bool* key0 = {};
 	bool key1[8] = {0,0,0,0,0,0,0,0};
 	bool key2[8] = { 0,0,0,0,0,0,0,0 };
@@ -42,11 +42,8 @@ int main()
 			cout << " Enter your 8-bit plaintext: ";
 			input = getInput(plain);
 
-			for (int i = 0; i < 8; i++)
-			{
-				input2[i] = input[i];
-
-			}
+			for (int i = 0; i < 8; i++) input2[i] = input[i];
+				
 
 			cout << " Enter your 10-bit key: ";
 			key0 = getKey(key);
@@ -55,7 +52,11 @@ int main()
 			
 			IPFunction(input2);
 
-			InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key1) ), key2 ));
+			FunctionFk(input2, output, key1);
+			SwitchFn (output);
+
+			FunctionFk(input2, output, key2);
+			InverseIPFunction(output);
 
 			break;
 			}
@@ -72,7 +73,7 @@ int main()
 
 			IPFunction(input2);
 
-			InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key2) ), key1 ));
+			//InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key2) ), key1 ));
 
 			break;
 			}

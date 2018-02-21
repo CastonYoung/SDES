@@ -81,7 +81,7 @@ void InverseIPFunction(bool textIIP[])
 	for (int i = 0; i < 8; i++) textIIP[i] = tempIIP[i];
 }
 
-bool* FunctionFk(bool textFFK[], bool subkey1[])
+void FunctionFk(bool textFFK[], bool output[], bool subkey1[])
 {
 	// E/P Expansion permutation
 	bool eP[8]; //vlaues for the text being permutated
@@ -111,15 +111,15 @@ bool* FunctionFk(bool textFFK[], bool subkey1[])
 	bool p4Holder2[2] = { 0,0 };
 	decimalConversion(second, p4Holder2);
 
-	tR[0] = p4Holder1[1];
-	tR[1] = p4Holder2[1];
-	tR[2] = p4Holder2[0];
-	tR[3] = p4Holder1[1];
+	tR[0] = p4Holder1[1] ^ textFFK[0];
+	tR[1] = p4Holder2[1] ^ textFFK[1];
+	tR[2] = p4Holder2[0] ^ textFFK[2];
+	tR[3] = p4Holder1[0] ^ textFFK[3];
 
-	return tR;
+	for (int i = 0; i < 4; i++) output[i] = tR[i];
 }
 
-bool* Switch(bool textSW[])//Switches the first and second halves of 8 bit data.
+void SwitchFn(bool textSW[])//Switches the first and second halves of 8 bit data.
 {
 	bool tempTextSW[8];
 	tempTextSW[0] = textSW[4];
@@ -131,9 +131,22 @@ bool* Switch(bool textSW[])//Switches the first and second halves of 8 bit data.
 	tempTextSW[6] = textSW[2];
 	tempTextSW[7] = textSW[3];
 
-	return tempTextSW;
+	for (int i = 0; i < 8; i++) textSW[i] = tempTextSW[i];
 }
 
+void GenKey1(bool key0[], bool* key1)
+{
+	key1[0] = key0[0];
+	key1[1] = key0[6];
+	key1[2] = key0[8];
+	key1[3] = key0[3];
+	key1[4] = key0[7];
+	key1[5] = key0[2];
+	key1[6] = key0[9];
+	key1[7] = key0[5];
+}
+
+/*
 void GenKey1(bool textG1[], bool* keyG1)
 {
 	
@@ -159,7 +172,9 @@ void GenKey1(bool textG1[], bool* keyG1)
 	
 
 }
+*/
 
+/*
 void GenKey2(bool textG2[], bool* keyG2)
 {
 	bool tempG2[8];
@@ -183,6 +198,19 @@ void GenKey2(bool textG2[], bool* keyG2)
 	keyG2[7] = tempG2[7];
 
 
+}
+*/
+
+void GenKey2(bool key0[], bool* key2)
+{
+	key2[0] = key0[7];
+	key2[1] = key0[2];
+	key2[2] = key0[5];
+	key2[3] = key0[4];
+	key2[4] = key0[9];
+	key2[5] = key0[1];
+	key2[6] = key0[8];
+	key2[7] = key0[0];
 }
 
 
