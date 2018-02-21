@@ -17,61 +17,76 @@ int S1[4][4] = { { 0,1,2,3 },
 
 bool* getInput(int textType)
 {
-	int size;
-	if (textType == key)
-		size = 10;
-	else
-		size = 8;
 
-	bool* inputText = new bool[size];
-	
+	bool* inputText = new bool[8];
 
 
-
-	for(int i{}; i < size; i++)
+	for (int i{}; i < 8; i++)
 	{
 		char rawInput;
 		cin >> rawInput;
 		auto const currentBit = rawInput - '0';
 		inputText[i] = currentBit;
 	}
-	
+
+	return inputText;
+}
+bool* getKey(int textType)
+{
+
+	bool* inputText = new bool[10];
+
+
+	for (int i{}; i < 10; i++)
+	{
+		char rawInput;
+		cin >> rawInput;
+		auto const currentBit = rawInput - '0';
+		inputText[i] = currentBit;
+	}
+
 	return inputText;
 }
 
 
-bool* IPFunction(bool* text)
+void IPFunction(bool textIP[])
 {
-	bool tempText[8];
-	tempText[0] = text[1];
-	tempText[1] = text[5];
-	tempText[2] = text[2];
-	tempText[3] = text[0];
-	tempText[4] = text[3];
-	tempText[5] = text[7];
-	tempText[6] = text[4];
-	tempText[7] = text[6];
+	bool tempIP[8];
 
+	tempIP[0] = textIP[1];
+	tempIP[1] = textIP[5];
+	tempIP[2] = textIP[2];
+	tempIP[3] = textIP[0];
+	tempIP[4] = textIP[3];
+	tempIP[5] = textIP[7];
+	tempIP[6] = textIP[4];
+	tempIP[7] = textIP[6];
+
+	for (int i = 0; i < 8; i++)
+	{
+		textIP[i] = tempIP[i];
+
+	}
 	
-	return tempText;
+	
 }
 
-bool* InverseIPFunction(bool* text)
+bool* InverseIPFunction(bool textIIP[])
 {
-	bool tempText[8];
-	tempText[0] = text[3];
-	tempText[1] = text[0];
-	tempText[2] = text[2];
-	tempText[3] = text[4];
-	tempText[4] = text[6];
-	tempText[5] = text[1];
-	tempText[6] = text[7];
-	tempText[7] = text[5];
+	bool tempTextIP[8];
+	tempTextIP[0] = textIIP[3];
+	tempTextIP[1] = textIIP[0];
+	tempTextIP[2] = textIIP[2];
+	tempTextIP[3] = textIIP[4];
+	tempTextIP[4] = textIIP[6];
+	tempTextIP[5] = textIIP[1];
+	tempTextIP[6] = textIIP[7];
+	tempTextIP[7] = textIIP[5];
 
-	return tempText;
+	return tempTextIP;
 }
 
-bool* FunctionFk(bool* text, bool* subkey1)
+bool* FunctionFk(bool textFFK[], bool subkey1[])
 {
 	// E/P Expansion permutation
 	bool eP[8]; //vlaues for the text being permutated
@@ -79,76 +94,105 @@ bool* FunctionFk(bool* text, bool* subkey1)
 	bool p4Binary[4]; //binary values from the decimal values
 	bool tR[4]; //table result container (from positions in s0 and s1)
 
-	eP[0] = text[3] ^ subkey1[0];
-	eP[1] = text[0] ^ subkey1[1];
-	eP[2] = text[1] ^ subkey1[2];
-	eP[3] = text[2] ^ subkey1[3];
+	eP[0] = textFFK[3] ^ subkey1[0];
+	eP[1] = textFFK[0] ^ subkey1[1];
+	eP[2] = textFFK[1] ^ subkey1[2];
+	eP[3] = textFFK[2] ^ subkey1[3];
 
-	eP[4] = text[1] ^ subkey1[4];
-	eP[5] = text[2] ^ subkey1[5];
-	eP[6] = text[3] ^ subkey1[6];
-	eP[7] = text[0] ^ subkey1[7];
+	eP[4] = textFFK[1] ^ subkey1[4];
+	eP[5] = textFFK[2] ^ subkey1[5];
+	eP[6] = textFFK[3] ^ subkey1[6];
+	eP[7] = textFFK[0] ^ subkey1[7];
 
 
 	//get values from table
 	p4Decimal[0] = S0[binaryConversion(eP[0], eP[3])][binaryConversion(eP[1], eP[2])];
 	p4Decimal[1] = S1[binaryConversion(eP[4], eP[7])][binaryConversion(eP[5], eP[6])];
 
-	bool* p4Holder1 = decimalConversion(p4Decimal[0]);
-	bool* p4Holder2 = decimalConversion(p4Decimal[2]);
+	int first = p4Decimal[0];
+	int second = p4Decimal[1];
 
-	tR[0] = p4Holder1[0];
-	tR[1] = p4Holder1[1];
+	bool p4Holder1[2] = { 0,0 };
+	decimalConversion(first, p4Holder1);
+	bool p4Holder2[2] = { 0,0 };
+	decimalConversion(second, p4Holder2);
+
+	tR[0] = p4Holder1[1];
+	tR[1] = p4Holder2[1];
 	tR[2] = p4Holder2[0];
-	tR[3] = p4Holder2[1];
+	tR[3] = p4Holder1[1];
+
+
 
 	return tR;
 }
 
-bool* Switch(bool* text)//Switches the first and second halves of 8 bit data.
+bool* Switch(bool textSW[])//Switches the first and second halves of 8 bit data.
 {
-	bool tempText[8];
-	tempText[0] = text[4];
-	tempText[1] = text[5];
-	tempText[2] = text[6];
-	tempText[3] = text[7];
-	tempText[4] = text[0];
-	tempText[5] = text[1];
-	tempText[6] = text[2];
-	tempText[7] = text[3];
+	bool tempTextSW[8];
+	tempTextSW[0] = textSW[4];
+	tempTextSW[1] = textSW[5];
+	tempTextSW[2] = textSW[6];
+	tempTextSW[3] = textSW[7];
+	tempTextSW[4] = textSW[0];
+	tempTextSW[5] = textSW[1];
+	tempTextSW[6] = textSW[2];
+	tempTextSW[7] = textSW[3];
 
-	return tempText;
+	
+
+	return tempTextSW;
 }
 
-bool* GenKey1(bool* text)//[10]
+void GenKey1(bool textG1[], bool* keyG1)
 {
 	
-	bool key1[8];
-	key1[0] = text[5];
-	key1[1] = text[4];
-	key1[2] = text[9];
-	key1[3] = text[1];
-	key1[4] = text[0];
-	key1[5] = text[6];
-	key1[6] = text[7];
-	key1[7] = text[8];
+	bool tempG1[8];
 
-	return key1;
+	tempG1[0] = textG1[5];
+	tempG1[1] = textG1[4];
+	tempG1[2] = textG1[9];
+	tempG1[3] = textG1[1];
+	tempG1[4] = textG1[0];
+	tempG1[5] = textG1[6];
+	tempG1[6] = textG1[7];
+	tempG1[7] = textG1[8];
+
+	keyG1[0] = tempG1[0];
+	keyG1[1] = tempG1[1];
+	keyG1[2] = tempG1[2];
+	keyG1[3] = tempG1[3];
+	keyG1[4] = tempG1[4];
+	keyG1[5] = tempG1[5];
+	keyG1[6] = tempG1[6];
+	keyG1[7] = tempG1[7];
+	
+
 }
 
-bool* GenKey2(bool* text)//[10]
+void GenKey2(bool textG2[], bool* keyG2)
 {
-	bool key2[8];
-	key2[0] = text[7];
-	key2[1] = text[2];
-	key2[2] = text[5];
-	key2[3] = text[4];
-	key2[4] = text[9];
-	key2[5] = text[1];
-	key2[6] = text[8];
-	key2[7] = text[0];
+	bool tempG2[8];
 
-	return key2;
+	tempG2[0] = textG2[7];
+	tempG2[1] = textG2[2];
+	tempG2[2] = textG2[5];
+	tempG2[3] = textG2[4];
+	tempG2[4] = textG2[9];
+	tempG2[5] = textG2[1];
+	tempG2[6] = textG2[8];
+	tempG2[7] = textG2[0];
+
+	keyG2[0] = tempG2[0];
+	keyG2[1] = tempG2[1];
+	keyG2[2] = tempG2[2];
+	keyG2[3] = tempG2[3];
+	keyG2[4] = tempG2[4];
+	keyG2[5] = tempG2[5];
+	keyG2[6] = tempG2[6];
+	keyG2[7] = tempG2[7];
+
+
 }
 
 
@@ -166,20 +210,20 @@ int binaryConversion(bool one, bool two)
 
 }
 
-bool* decimalConversion(int decimal)
+void decimalConversion(int decimal, bool ph4[])
 {
-	bool bits[2];
+	bool bits[2]{};
 
-	if (decimal = 3)
+	if (decimal == 3)
 	{
 		bits[0] = 1;
 		bits[1] = 1;
-	} else if (decimal = 2)
+	} else if (decimal == 2)
 	{
 		bits[0] = 1;
 		bits[1] = 0;
 	}
-	else if (decimal = 1)
+	else if (decimal == 1)
 	{
 		bits[0] = 0;
 		bits[1] = 1;
@@ -190,6 +234,7 @@ bool* decimalConversion(int decimal)
 		bits[1] = 0;
 	}
 		
-	return bits;
+	ph4[0] = bits[0];
+	ph4[1] = bits[1];
 
 }
