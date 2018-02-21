@@ -9,16 +9,18 @@ using namespace std;
 
 int main()
 {
-	// Code assistance from http://www.cplusplus.com/forum/beginner/21033/
+
 	int choice;
-	auto programRun = true;
+	bool input2[8] = { 0,0,0,0,0,0,0,0 };
+	bool *input = {};
+	bool *output = {};
+	bool* key0 = {};
+	bool key1[8] = {0,0,0,0,0,0,0,0};
+	bool key2[8] = { 0,0,0,0,0,0,0,0 };
+	bool programRun = true;
 	while (programRun)
 	{
-		bool *input;
-		bool *output = {};
-		bool *key0;
-		bool *key1;
-		bool *key2;
+		
 	
 
 		cout << "***********SDES Multitool************\n";
@@ -40,12 +42,20 @@ int main()
 			cout << " Enter your 8-bit plaintext: ";
 			input = getInput(plain);
 
-			cout << " Enter your 10-bit key: ";
-			key0 = getInput(key);
-			key1 = GenKey1(key0);
-			key2 = GenKey2(key0);
+			for (int i = 0; i < 8; i++)
+			{
+				input2[i] = input[i];
 
-			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(IPFunction(input),key1) ), key2 ));
+			}
+
+			cout << " Enter your 10-bit key: ";
+			key0 = getKey(key);
+			GenKey1(key0, key1);
+			GenKey2(key0, key2);
+			
+			IPFunction(input2);
+
+			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key1) ), key2 ));
 
 			break;
 			}
@@ -57,10 +67,12 @@ int main()
 
 			cout << " Enter your 10-bit key: ";
 			key0 = getInput(key);
-			key1 = GenKey1(key0);
-			key2 = GenKey2(key0);
+			GenKey1(key0, key1);
+			GenKey2(key0, key2);
 
-			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(IPFunction(input),key2) ), key1 ));
+			IPFunction(input2);
+
+			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(input2,key2) ), key1 ));
 
 			break;
 			}

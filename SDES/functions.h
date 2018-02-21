@@ -4,19 +4,21 @@ enum TextType { plain, cipher, key };
 
 bool* getInput(int textType);
 
-bool* IPFunction(bool* text);
+void IPFunction(bool* textIP);
 
-bool* InverseIPFunction(bool* text);
+bool* InverseIPFunction(bool* textIIP);
 
-bool* FunctionFk(bool* text, bool* subkey1);
+bool* FunctionFk(bool* textFFK, bool* subkey1);
 
-bool* Switch(bool* text);
+bool* Switch(bool* textSW);
 
-bool* GenKey1(bool* text);
+void GenKey1(bool textG2[], bool* keyG1);
 
-bool* GenKey2(bool* text);
+void GenKey2(bool textG2[], bool* keyG2);
+
+bool* getKey(int textType);
 
 int binaryConversion(bool one, bool two);
 
-bool* decimalConversion(int decimal);
+void decimalConversion(int decimal, bool p4h[]);
 
