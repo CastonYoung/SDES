@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include "functions.h"
+#include <vector>
 
 using namespace std;
 
@@ -12,13 +13,13 @@ int main()
 	// Code assistance from http://www.cplusplus.com/forum/beginner/21033/
 	int choice;
 	auto programRun = true;
+	vector<bool> input;
+	vector<bool> output;
+	vector<bool> key0;
+	vector<bool> key1;
+	vector<bool> key2;
 	while (programRun)
 	{
-		bool *input;
-		bool *output = {};
-		bool *key0;
-		bool *key1;
-		bool *key2;
 	
 
 		cout << "***********SDES Multitool************\n";
@@ -47,6 +48,13 @@ int main()
 
 			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(IPFunction(input),key1) ), key2 ));
 
+			for (int i = 0; i < 8; i++)
+			{
+				if (output[i])	cout << '1';
+				else			cout << '0';
+			}
+			cout << endl;
+
 			break;
 			}
 
@@ -62,6 +70,13 @@ int main()
 
 			output = InverseIPFunction(FunctionFk( Switch( FunctionFk(IPFunction(input),key2) ), key1 ));
 
+			for (int i = 0; i < 8; i++)
+			{
+				if (output[i])	cout << '1';
+				else			cout << '0';
+			}
+			cout << endl;
+
 			break;
 			}
 
@@ -76,15 +91,6 @@ int main()
 			cin >> choice;
 			break;
 		}
-
-		for (int i = 0; i < 8; i++)
-		{
-			if (output[i])
-				cout << '1';
-			else
-				cout << '0';
-		}
-		cout << endl;
 
 	}
 

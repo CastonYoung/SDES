@@ -1,22 +1,24 @@
 #pragma once
 
+#include <vector>
+
 enum TextType { plain, cipher, key };
 
-bool* getInput(int textType);
+vector<bool> getInput(int textType);
 
-bool* IPFunction(bool* text);
+vector<bool> IPFunction(const vector<bool> text);
 
-bool* InverseIPFunction(bool* text);
+vector<bool> InverseIPFunction(const vector<bool> text);
 
-bool* FunctionFk(bool* text, bool* subkey1);
+vector<bool> FunctionFk(vector<bool> text, const vector<bool> subkey1);
 
-bool* Switch(bool* text);
+vector<bool> Switch(const vector<bool> text);
 
-bool* GenKey1(bool* text);
+vector<bool> GenKey1(const vector<bool> text);
 
-bool* GenKey2(bool* text);
+vector<bool> GenKey2(const vector<bool> text);
 
 int binaryConversion(bool one, bool two);
 
-bool* decimalConversion(int decimal);
+vector<bool> decimalConversion(int decimal);
 

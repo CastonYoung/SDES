@@ -15,18 +15,14 @@ int S1[4][4] = { { 0,1,2,3 },
 { 3,0,1,0 },
 { 2,1,0,3 } };
 
-bool* getInput(int textType)
+vector<bool> getInput(int textType)
 {
 	int size;
-	if (textType == key)
-		size = 10;
-	else
-		size = 8;
+	if (textType == key) size = 10;
+	else size = 8;
 
-	bool* inputText = new bool[size];
-	
-
-
+	vector<bool> inputText;
+	inputText.resize(size);
 
 	for(int i{}; i < size; i++)
 	{
@@ -40,9 +36,10 @@ bool* getInput(int textType)
 }
 
 
-bool* IPFunction(bool* text)
+vector<bool> IPFunction(const vector<bool> text)
 {
-	bool tempText[8];
+	vector<bool> tempText;
+	tempText.resize(8);
 	tempText[0] = text[1];
 	tempText[1] = text[5];
 	tempText[2] = text[2];
@@ -51,14 +48,14 @@ bool* IPFunction(bool* text)
 	tempText[5] = text[7];
 	tempText[6] = text[4];
 	tempText[7] = text[6];
-
 	
 	return tempText;
 }
 
-bool* InverseIPFunction(bool* text)
+vector<bool> InverseIPFunction(const vector<bool> text)
 {
-	bool tempText[8];
+	vector<bool> tempText;
+	tempText.resize(8);
 	tempText[0] = text[3];
 	tempText[1] = text[0];
 	tempText[2] = text[2];
@@ -71,13 +68,17 @@ bool* InverseIPFunction(bool* text)
 	return tempText;
 }
 
-bool* FunctionFk(bool* text, bool* subkey1)
+vector<bool> FunctionFk(vector<bool> text, const vector<bool> subkey1)
 {
 	// E/P Expansion permutation
-	bool eP[8]; //vlaues for the text being permutated
-	int p4Decimal[2]; //decimal values returned from the tables
-	bool p4Binary[4]; //binary values from the decimal values
-	bool tR[4]; //table result container (from positions in s0 and s1)
+	vector<bool> eP; //vlaues for the text being permutated
+	eP.resize(8);
+	vector<int> p4Decimal; //decimal values returned from the tables
+	p4Decimal.resize(2);
+	vector<bool> p4Binary; //binary values from the decimal values
+	p4Binary.resize(4);
+	vector<bool> tR; //table result container (from positions in s0 and s1)
+	tR.resize(4);
 
 	eP[0] = text[3] ^ subkey1[0];
 	eP[1] = text[0] ^ subkey1[1];
@@ -94,8 +95,8 @@ bool* FunctionFk(bool* text, bool* subkey1)
 	p4Decimal[0] = S0[binaryConversion(eP[0], eP[3])][binaryConversion(eP[1], eP[2])];
 	p4Decimal[1] = S1[binaryConversion(eP[4], eP[7])][binaryConversion(eP[5], eP[6])];
 
-	bool* p4Holder1 = decimalConversion(p4Decimal[0]);
-	bool* p4Holder2 = decimalConversion(p4Decimal[2]);
+	vector<bool> p4Holder1 = decimalConversion( p4Decimal[0] );
+	vector<bool> p4Holder2 = decimalConversion( p4Decimal[2] );
 
 	tR[0] = p4Holder1[0];
 	tR[1] = p4Holder1[1];
@@ -105,9 +106,10 @@ bool* FunctionFk(bool* text, bool* subkey1)
 	return tR;
 }
 
-bool* Switch(bool* text)//Switches the first and second halves of 8 bit data.
+vector<bool> Switch(const vector<bool> text)//Switches the first and second halves of 8 bit data.
 {
-	bool tempText[8];
+	vector<bool> tempText;
+	tempText.resize(8);
 	tempText[0] = text[4];
 	tempText[1] = text[5];
 	tempText[2] = text[6];
@@ -120,10 +122,10 @@ bool* Switch(bool* text)//Switches the first and second halves of 8 bit data.
 	return tempText;
 }
 
-bool* GenKey1(bool* text)//[10]
+vector<bool> GenKey1(const vector<bool> text)
 {
-	
-	bool key1[8];
+	vector<bool> key1;
+	key1.resize(8);
 	key1[0] = text[5];
 	key1[1] = text[4];
 	key1[2] = text[9];
@@ -136,9 +138,10 @@ bool* GenKey1(bool* text)//[10]
 	return key1;
 }
 
-bool* GenKey2(bool* text)//[10]
+vector<bool> GenKey2(const vector<bool> text)
 {
-	bool key2[8];
+	vector<bool> key2;
+	key2.resize(8);
 	key2[0] = text[7];
 	key2[1] = text[2];
 	key2[2] = text[5];
@@ -154,21 +157,16 @@ bool* GenKey2(bool* text)//[10]
 
 int binaryConversion(bool one, bool two)
 {
-
-	if (one && two)
-		return 3;
-	else if (one && !two)
-		return 2;
-	else if (!one && two)
-		return 1;
-	else
-		return 0;
-
+	/**/ if ( one && two )	return 3;
+	else if ( one &&!two )	return 2;
+	else if (!one && two )	return 1;
+	else					return 0;
 }
 
-bool* decimalConversion(int decimal)
+vector<bool> decimalConversion(int decimal)
 {
-	bool bits[2];
+	vector<bool> bits;
+	bits.resize(2);
 
 	if (decimal = 3)
 	{
@@ -191,5 +189,4 @@ bool* decimalConversion(int decimal)
 	}
 		
 	return bits;
-
 }
